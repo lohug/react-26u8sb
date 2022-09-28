@@ -42,9 +42,9 @@ const independence = (data) => {
   let nodes2 = [];
   let edges2 = [];
   for (let i = 0; i < nodes.length; i++)
-    nodes2.push({ id: nodes.id, label: nodes.label });
+    nodes2.push({ id: nodes[i].id, label: nodes[i].label });
   for (let i = 0; i < edges2.length; i++)
-    edges2.push({ from: edges.from, to: edges.to });
+    edges2.push({ from: edges[i].from, to: edges[i].to });
 
   const deleteNode = (arr, id) => {
     let res = [];
