@@ -39,14 +39,56 @@ const buildData = (data) => {
 const independence = (data) => {
   let { nodesOG, edgesOG } = data;
   let { nodes, edges } = data;
-  let degree = {};
-  for (let i = 0; i < edges.length; i++) {
-    if (degree[edges[i].from]) degree[edges[i].from]++;
-    else degree[edges[i].from] = 1;
-    if (degree[edges[i].to]) degree[edges[i].to]++;
-    else degree[edges[i].to] = 1;
-  }
-  console.log(degree);
+  let { nodes2, edges2 } = data;
+
+  const deleteNode = (arr, id) => {
+    const index = arr.indexOf({ id: id, label: '' + id });
+    if (index > -1) {
+      arr.splice(index, 1);
+    }
+    return arr;
+  };
+
+  const deleteEdge = (arr, id1, id2) => {
+    const index = arr.indexOf({ from: id1, to: id2 });
+    if (index > -1) {
+      arr.splice(index, 1);
+    }
+    return arr;
+  };
+  do {
+    let CI = [];
+    do {
+      let degree = {};
+      for (let i = 0; i < edges.length; i++) {
+        if (degree[edges[i].from]) degree[edges[i].from]++;
+        else degree[edges[i].from] = 1;
+        if (degree[edges[i].to]) degree[edges[i].to]++;
+        else degree[edges[i].to] = 1;
+      }
+      let min = { node: -1, val: -1 };
+      for (const [key, value] of Object.entries(degree)) {
+        if (min.val > value) {
+          min.node = key;
+          min.val = value;
+        }
+      }
+      CI.push(min.node);
+
+      nodes = deleteNode(nodes, min.node);
+
+      for (let i = 0; i < edges.length; i++) {
+        if (degree[edges[i].from] === min.node) {
+          nodes = deleteNode(nodes, edges[i].to);
+          edges = deleteEdge(edges, edges[i].from, edges[i].to);
+        } else if (degree[edges[i].to] === min.node) {
+          nodes = deleteNode(nodes, edges[i].from);
+          edges = deleteEdge(edges, edges[i].from, edges[i].to);
+        }
+      }
+    } while (nodes.length > 0);
+    for (let i = 0; i < CI.length; i++) deleteNode(nodes2, CI[i]);
+  } while (nodes2.length > 0);
 };
 
 let clustered = false;
