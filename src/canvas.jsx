@@ -39,7 +39,12 @@ const buildData = (data) => {
 const independence = (data) => {
   let { nodesOG, edgesOG } = data;
   let { nodes, edges } = data;
-  let { nodes2, edges2 } = data;
+  let nodes2 = [];
+  let edges2 = [];
+  for (let i = 0; i < nodes.length; i++)
+    nodes2.push({ id: nodes.id, label: nodes.label });
+  for (let i = 0; i < edges2.length; i++)
+    edges2.push({ from: edges.from, to: edges.to });
 
   const deleteNode = (arr, id) => {
     const index = arr.indexOf({ id: id, label: '' + id });
@@ -88,7 +93,8 @@ const independence = (data) => {
       }
       break;
     } while (nodes.length > 0);
-    for (let i = 0; i < CI.length; i++) deleteNode(nodes2, CI[i]);
+    console.log(nodes2);
+    for (let i = 0; i < CI.length; i++) nodes2 = deleteNode(nodes2, CI[i]);
     break;
   } while (nodes2.length > 0);
 };
