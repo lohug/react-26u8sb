@@ -79,15 +79,17 @@ const independence = (data) => {
       CI.push(min.node);
 
       nodes = deleteNode(nodes, min.node);
+      console.log(nodes);
 
       for (let i = 0; i < edges.length; i++) {
         if (degree[edges[i].from] === min.node) {
-          nodes = deleteNode(nodes, edges[i].to);
+          //nodes = deleteNode(nodes, edges[i].to);
           edges = deleteEdge(edges, edges[i].from, edges[i].to);
         } else if (degree[edges[i].to] === min.node) {
-          nodes = deleteNode(nodes, edges[i].from);
+          //nodes = deleteNode(nodes, edges[i].from);
           edges = deleteEdge(edges, edges[i].from, edges[i].to);
         }
+        console.log(edges);
       }
       break;
     } while (nodes.length > 0);
