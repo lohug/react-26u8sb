@@ -4,6 +4,7 @@ import { makeStyles } from '@material-ui/styles';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import DirectedGraph from './DirectedGraph';
+import UndirectedGraph from './UndirectedGraph';
 
 const useStyles = makeStyles((theme) => ({
   graph: {
@@ -35,6 +36,19 @@ const buildData = (data) => {
   return { nodes, edges };
 };
 
+const independence = (data) => {
+  let { nodesOG, edgesOG } = data;
+  let { nodes, edges } = data;
+  let degree = {};
+  for (let i = 0; i < edges.length; i++) {
+    if (degree[edges[i].from]) degree[edges[i].from]++;
+    else degree[edges[i].from] = 1;
+    if (degree[edges[i].to]) degree[edges[i].to]++;
+    else degree[edges[i].to] = 1;
+  }
+  console.log(degree);
+};
+
 let clustered = false;
 // let data = { nodes: [], edges: [] };
 export default function SimpleMenu() {
@@ -43,14 +57,19 @@ export default function SimpleMenu() {
   const [strength, setStrength] = React.useState(() => Math.random() * 60 - 30);
 
   const graphData = {
-    nodes: [{ id: 1 }, { id: 2 }, { id: 3 }, { id: 4 }, { id: 5 }],
+    nodes: [
+      { id: 1, label: '1' },
+      { id: 2, label: '2' },
+      { id: 3, label: '3' },
+      { id: 4, label: '4' },
+      { id: 5, label: '5' },
+    ],
     edges: [
       { from: 1, to: 2 },
       { from: 1, to: 3 },
       { from: 1, to: 4 },
       { from: 1, to: 5 },
       { from: 2, to: 3 },
-      { from: 2, to: 4 },
       { from: 2, to: 5 },
       { from: 3, to: 4 },
       { from: 3, to: 5 },
@@ -58,6 +77,7 @@ export default function SimpleMenu() {
     ],
   };
   let data = useMemo(() => buildData(graphData));
+  let res = independence(graphData);
   // useEffect(() => {
   //   data = buildData(graphData);
   // }, []);
@@ -99,7 +119,7 @@ export default function SimpleMenu() {
         <MenuItem onClick={handleClose}>Logout</MenuItem>
       </Menu>
 
-      <DirectedGraph
+      <UndirectedGraph
         className={classes.graph}
         data={data}
         animation
