@@ -47,7 +47,7 @@ const independence = (data) => {
     edges2.push({ from: edges.from, to: edges.to });
 
   const deleteNode = (arr, id) => {
-    res = [];
+    let res = [];
     for (let i = 0; i < arr.length; i++)
       if (arr[i].id !== id || arr[i].label != id) res.push(arr[i]);
 
