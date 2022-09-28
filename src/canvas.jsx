@@ -47,11 +47,11 @@ const independence = (data) => {
     edges2.push({ from: edges.from, to: edges.to });
 
   const deleteNode = (arr, id) => {
-    const index = arr.indexOf({ id: id, label: '' + id });
-    if (index > -1) {
-      arr.splice(index, 1);
-    }
-    return arr;
+    res = [];
+    for (let i = 0; i < arr.length; i++)
+      if (arr[i].id !== id || arr[i].label != id) res.push(arr[i]);
+
+    return res;
   };
 
   const deleteEdge = (arr, id1, id2) => {
