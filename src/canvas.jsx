@@ -49,7 +49,7 @@ const independence = (data) => {
   const deleteNode = (arr, id) => {
     let res = [];
     for (let i = 0; i < arr.length; i++)
-      if (arr[i].id != id) res.push(arr[i]);
+      if (arr[i].id != id) res.push({id: arr[i].id, label: arr[i].label});
     return res;
   };
 
