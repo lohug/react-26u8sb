@@ -50,16 +50,14 @@ const independence = (data) => {
     let res = [];
     for (let i = 0; i < arr.length; i++)
       if (arr[i].id !== id || arr[i].label != id) res.push(arr[i]);
-
     return res;
   };
 
   const deleteEdge = (arr, id1, id2) => {
-    const index = arr.indexOf({ from: id1, to: id2 });
-    if (index > -1) {
-      arr.splice(index, 1);
-    }
-    return arr;
+    let res = [];
+    for (let i = 0; i < arr.length; i++)
+      if (arr[i].from != id1 || arr[i].to != id2) res.push(arr[i]);
+    return res;
   };
   do {
     let CI = [];
