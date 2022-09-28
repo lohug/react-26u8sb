@@ -56,7 +56,7 @@ const independence = (data) => {
   const deleteEdge = (arr, id1, id2) => {
     let res = [];
     for (let i = 0; i < arr.length; i++)
-      if (arr[i].from != id1 || arr[i].to != id2) res.push(arr[i]);
+      if (arr[i].from != id1 || arr[i].to != id2) res.push({from: arr[i].from, to: arr[i].tos});
     return res;
   };
   do {
@@ -91,6 +91,7 @@ const independence = (data) => {
         }
         console.log(edges);
       }
+
       break;
     } while (nodes.length > 0);
     console.log(nodes2);
