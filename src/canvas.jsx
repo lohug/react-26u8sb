@@ -86,8 +86,10 @@ const independence = (data) => {
           edges = deleteEdge(edges, edges[i].from, edges[i].to);
         }
       }
+      break;
     } while (nodes.length > 0);
     for (let i = 0; i < CI.length; i++) deleteNode(nodes2, CI[i]);
+    break;
   } while (nodes2.length > 0);
 };
 
