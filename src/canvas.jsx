@@ -47,7 +47,7 @@ const independence = (data) => {
     nodes2.push({ id: nodes[i].id, label: nodes[i].label });
     nodes3.push({ id: nodes[i].id, label: nodes[i].label });
   }
-  for (let i = 0; i < edges2.length; i++) {
+  for (let i = 0; i < edges.length; i++) {
     edges2.push({ from: edges[i].from, to: edges[i].to });
     edges3.push({ from: edges[i].from, to: edges[i].to });
   }
