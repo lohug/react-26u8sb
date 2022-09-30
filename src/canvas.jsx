@@ -86,6 +86,7 @@ const independence = (data) => {
       CI.push(min.node);
 
       nodes3 = deleteNode(nodes3, min.node);
+      console.log('AAAAAAAAAAA');
       console.log(nodes3);
 
       for (let i = 0; i < edges3.length; i++) {
@@ -100,6 +101,7 @@ const independence = (data) => {
       }
 
       break;
+      console.log('BBBBBBBBBBBB');
     } while (nodes3.length > 0);
     console.log(nodes2);
     for (let i = 0; i < CI.length; i++) nodes2 = deleteNode(nodes2, CI[i]);
@@ -135,6 +137,7 @@ export default function SimpleMenu() {
     ],
   };
   let data = useMemo(() => buildData(graphData));
+  console.log('ASSSSDFASDFASDF');
   let res = independence(graphData);
   // useEffect(() => {
   //   data = buildData(graphData);
