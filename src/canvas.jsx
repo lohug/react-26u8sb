@@ -87,7 +87,7 @@ const independence = (data) => {
 
       nodes3 = deleteNode(nodes3, min.node);
       console.log('AAAAAAAAAAA');
-      console.log(nodes3);
+      //console.log(nodes3);
 
       for (let i = 0; i < edges3.length; i++) {
         if (degree[edges3[i].from] === min.node) {
