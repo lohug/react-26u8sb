@@ -71,9 +71,9 @@ const independence = (data) => {
     do {
       let degree = {};
       for (let i = 0; i < edges3.length; i++) {
-        if (degree[edges3[i].from]) degree3[edges[i].from]++;
+        if (degree[edges3[i].from]) degree[edges3[i].from]++;
         else degree[edges3[i].from] = 1;
-        if (degree[edges3[i].to]) degree3[edges[i].to]++;
+        if (degree[edges3[i].to]) degree[edges3[i].to]++;
         else degree[edges3[i].to] = 1;
       }
       let min = { node: -1, val: -1 };
