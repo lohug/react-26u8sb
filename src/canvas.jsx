@@ -97,13 +97,11 @@ const independence = (data) => {
           //nodes = deleteNode(nodes, edges[i].from);
           edges3 = deleteEdge(edges3, edges3[i].from, edges3[i].to);
         }
-        console.log(edges3);
       }
 
       break;
       console.log('BBBBBBBBBBBB');
     } while (nodes3.length > 0);
-    console.log(nodes2);
     for (let i = 0; i < CI.length; i++) nodes2 = deleteNode(nodes2, CI[i]);
     break;
   } while (nodes2.length > 0);
