@@ -94,7 +94,7 @@ const independence = (data) => {
           edges3 = deleteEdge(edges3, edges3[i].from, edges3[i].to);
         } else if (degree[edges3[i].to] === min.node) {
           //nodes = deleteNode(nodes, edges[i].from);
-          edges = deleteEdge(edges3, edges3[i].from, edges3[i].to);
+          edges3 = deleteEdge(edges3, edges3[i].from, edges3[i].to);
         }
         console.log(edges3);
       }
