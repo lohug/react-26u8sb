@@ -41,33 +41,40 @@ const independence = (data) => {
   let { nodes, edges } = data;
   let nodes2 = [];
   let edges2 = [];
-  for (let i = 0; i < nodes.length; i++)
+  let nodes3 = [];
+  let edges3 = [];
+  for (let i = 0; i < nodes.length; i++) {
     nodes2.push({ id: nodes[i].id, label: nodes[i].label });
-  for (let i = 0; i < edges2.length; i++)
+    nodes3.push({ id: nodes[i].id, label: nodes[i].label });
+  }
+  for (let i = 0; i < edges2.length; i++) {
     edges2.push({ from: edges[i].from, to: edges[i].to });
+    edges3.push({ from: edges[i].from, to: edges[i].to });
+  }
 
   const deleteNode = (arr, id) => {
     let res = [];
     for (let i = 0; i < arr.length; i++)
-      if (arr[i].id != id) res.push({id: arr[i].id, label: arr[i].label});
+      if (arr[i].id != id) res.push({ id: arr[i].id, label: arr[i].label });
     return res;
   };
 
   const deleteEdge = (arr, id1, id2) => {
     let res = [];
     for (let i = 0; i < arr.length; i++)
-      if (arr[i].from != id1 || arr[i].to != id2) res.push({from: arr[i].from, to: arr[i].tos});
+      if (arr[i].from != id1 || arr[i].to != id2)
+        res.push({ from: arr[i].from, to: arr[i].tos });
     return res;
   };
   do {
     let CI = [];
     do {
       let degree = {};
-      for (let i = 0; i < edges.length; i++) {
-        if (degree[edges[i].from]) degree[edges[i].from]++;
-        else degree[edges[i].from] = 1;
-        if (degree[edges[i].to]) degree[edges[i].to]++;
-        else degree[edges[i].to] = 1;
+      for (let i = 0; i < edges3.length; i++) {
+        if (degree[edges3[i].from]) degree3[edges[i].from]++;
+        else degree[edges3[i].from] = 1;
+        if (degree[edges3[i].to]) degree3[edges[i].to]++;
+        else degree[edges3[i].to] = 1;
       }
       let min = { node: -1, val: -1 };
       for (const [key, value] of Object.entries(degree)) {
@@ -78,22 +85,22 @@ const independence = (data) => {
       }
       CI.push(min.node);
 
-      nodes = deleteNode(nodes, min.node);
-      console.log(nodes);
+      nodes3 = deleteNode(nodes3, min.node);
+      console.log(nodes3);
 
-      for (let i = 0; i < edges.length; i++) {
-        if (degree[edges[i].from] === min.node) {
+      for (let i = 0; i < edges3.length; i++) {
+        if (degree[edges3[i].from] === min.node) {
           //nodes = deleteNode(nodes, edges[i].to);
-          edges = deleteEdge(edges, edges[i].from, edges[i].to);
-        } else if (degree[edges[i].to] === min.node) {
+          edges3 = deleteEdge(edges3, edges3[i].from, edges3[i].to);
+        } else if (degree[edges3[i].to] === min.node) {
           //nodes = deleteNode(nodes, edges[i].from);
-          edges = deleteEdge(edges, edges[i].from, edges[i].to);
+          edges = deleteEdge(edges3, edges3[i].from, edges3[i].to);
         }
-        console.log(edges);
+        console.log(edges3);
       }
 
       break;
-    } while (nodes.length > 0);
+    } while (nodes3.length > 0);
     console.log(nodes2);
     for (let i = 0; i < CI.length; i++) nodes2 = deleteNode(nodes2, CI[i]);
     break;
